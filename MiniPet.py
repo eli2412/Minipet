@@ -1,4 +1,5 @@
 import random
+from art import *
 class MiniPet:
     reduced_happiness = 3
     happiness_max = 10
@@ -6,7 +7,7 @@ class MiniPet:
     food_reduction = 3
     full_belly = 10
     starving_warning = 3
-    talk = ["'WRUFF!!'"] 
+    talk = [] 
 
     def __init__(self, name, type_animal):
         self.name = name
@@ -33,7 +34,7 @@ class MiniPet:
 
     def learn(self, new_word):
         self.talk.append(new_word)
-        print(f"{new_word}..., {new_word}..., {new_word}!!!\n")
+        print(f"{new_word}..., {new_word}..., {new_word.upper()}!!!\n")
         self.__timer()
 
     def bio(self):
@@ -41,7 +42,9 @@ class MiniPet:
         self.__timer()
 
     def feed(self):
-        print("Munch, munch, munch... :3\n")
+        print("Munch, munch, munch...")
+        art_4=art("satisfied")
+        print(art_4,"\n")
         meal = random.randrange(self.food, self.full_belly)
         self.food += meal
         if self.food < 0:
@@ -49,11 +52,15 @@ class MiniPet:
             print("I'm so hungry :(\n")
         elif self.food > self.full_belly:
             self.food = self.full_belly
-            print("I'm STUFFED, NO MORE FOOD!\n")
+            print("I'm STUFFED, NO MORE FOOD!")
+            art_1=art("barf")
+            print(art_1,"\n")
         self.__timer()
 
     def play(self):
-        print("PLAAAAAAAAAAY\n")
+        print("PLAAAAAAAAAAY")
+        art_2=art("excited")
+        print(art_2,"\n")
         play_time = random.randrange(self.happy, self.happiness_max)
         self.happy += play_time
         if self.happy < 0:
@@ -61,10 +68,13 @@ class MiniPet:
             print("I am BOOOOOOOOREED\n")
         elif self.happy > self.happiness_max:
             self.happy = self.happiness_max
-            print("YAAY, SO FUN, I'm getting tired though...\n")
+            print("YAAY, SO FUN, I'm getting tired though...")
+            art_3=art("tired")
+            print(art_3)
         self.__timer()
 
 def user():
+    tprint("WELCOME TO MINIPET","big-small")
     user_name = input("What is your name? ")
     pet_name = input("What would you like to name your pet? ")
     pet_type = input("What would kind of pet would you like? ")
@@ -76,14 +86,14 @@ def user():
     while True:
         choice = int(input("What would you like to do? \n 1 - Feed your pet \n 2 - Talk with your pet \n 3 - Teach your pet a new word \n 4 - Play with your pet \n 0 - Quit "))
         if choice == 0:
-            print(f"Goodbye {user_name}! Till next time.'Dies because of lack of attention'")
+            print(f"Goodbye {user_name}! Till next time.'Dies because lack of attention'")
             break
         elif choice == 1:
             my_pet.feed()
         elif choice == 2:
             my_pet.bio()
         elif choice == 3:
-            new_word = input("what word would you like to teach your pet? ")
+            new_word = input("What word would you like to teach your pet? ")
             my_pet.learn(new_word)
         elif choice == 4:
             my_pet.play()
